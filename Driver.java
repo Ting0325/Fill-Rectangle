@@ -21,5 +21,16 @@ public class Driver {
 		rectangle.display();
 		rectangle.fillFromRight();
 		rectangle.display();
-	}
+		System.out.println("advance");
+		rectangle.advLeft();
+		rectangle.advRight();
+		rectangle.display();
+		rectangle.fillFromLeft();
+		rectangle.display();
+		/*
+		rectangle.fillFromRight();
+		rectangle.display();
+	
+	*/
+		}
 }

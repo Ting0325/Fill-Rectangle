@@ -45,19 +45,19 @@ public class Rectangle {
 		int prvWidth = 0;
 		//int filledIndex = 4;
 		for(int i = 0; i < height;i ++) {	
-			for(int j = 0; j < width;j ++) {				
-				if(arr[i][j] != 0 || j == width-1) {
+			for(int j = wallLeft; j < width;j ++) {				
+				if(arr[i][j] != wallLeft || j == width-1) {
 					if(j == width-1) {
 						arr[i][j] = rectIndex; 
 					}
-					if(j != prvWidth && i !=0) {
+					if(j != prvWidth && i !=wallLeft) {
 						rectIndex ++;
 						if(j==width-1) {
-							for(int b = j; b >=0;b-- ) {
+							for(int b = j; b >=wallLeft;b-- ) {
 								arr[i][b] = rectIndex;
 							}
 						}else {
-							for(int b = j-1; b >=0;b-- ) {
+							for(int b = j-1; b >=wallLeft;b-- ) {
 								arr[i][b] = rectIndex;
 							}
 						}
@@ -78,11 +78,11 @@ public class Rectangle {
 		//int filledIndex = 7;
 		for(int i = 0; i < height;i ++) {
 			int currWidth = 0;
-			for(int j = width-1; j >=0;j --) {	
+			for(int j = wallRight; j >=0;j --) {	
 				if(arr[i][j] != 0) {					
 					if(currWidth != prvWidth && currWidth !=0) {
 						rectIndex ++;
-						for(int b = j+1; b < width;b++ ) {
+						for(int b = j+1; b < wallRight+1;b++ ) {
 							arr[i][b] = rectIndex;
 						}
 					}
@@ -92,6 +92,29 @@ public class Rectangle {
 				}
 				arr[i][j] = rectIndex;
 				currWidth ++;
+			}
+		}
+	}
+	
+	public void advLeft() {
+		label:for(int i = wallLeft;i < wallRight;i ++) {
+			for(int j = 0;j < height;j ++) {
+				if(arr[j][i]==0) {
+					wallLeft = i;
+					System.out.println("wallLeft: "+wallLeft);
+					break label;
+				}	
+			}
+		}
+	}
+	public void advRight() {
+		label:for(int i = wallRight;i > wallLeft;i --) {
+			for(int j = 0;j < height;j ++) {
+				if(arr[j][i]==0) {
+					wallRight = i;
+					System.out.println("wallRight: "+wallRight);
+					break label;
+				}	
 			}
 		}
 	}
